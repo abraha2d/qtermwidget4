@@ -18,6 +18,6 @@ ENDIF(NOT EXISTS "@CMAKE_CURRENT_BINARY_DIR@/install_manifest.txt")
 #  ENDIF("${rm_retval}" GREATER 0)
 #ENDFOREACH(file)
 
-EXEC_PROGRAM("xargs rm < @CMAKE_BINARY_DIR@/install_manifest.txt"
+EXEC_PROGRAM("xargs rm < @CMAKE_CURRENT_BINARY_DIR@/install_manifest.txt"
             OUTPUT_VARIABLE rm_out
             RETURN_VARIABLE rm_ret)

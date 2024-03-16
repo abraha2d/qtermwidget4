@@ -6,7 +6,7 @@ option(BUILD_DESIGNER_PLUGIN "Build Qt4 designer plugin" ON)
 option(USE_QT5 "Build using Qt5. Default OFF." OFF)
 option(BUILD_TEST "Build test application. Default OFF." OFF)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 # just change version for releases
 set(QTERMWIDGET_VERSION_MAJOR "0")
@@ -20,9 +20,9 @@ include(CheckFunctionExists)
 include(GNUInstallDirs)
 
 include_directories(
-    "${CMAKE_SOURCE_DIR}/lib"
-    "${CMAKE_BINARY_DIR}/lib"
-    "${CMAKE_BINARY_DIR}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib"
+    "${CMAKE_CURRENT_BINARY_DIR}/lib"
+    "${CMAKE_CURRENT_BINARY_DIR}"
 )
 add_definitions(-Wall)
 
@@ -152,13 +152,13 @@ create_pkgconfig_file(${QTERMWIDGET_LIBRARY_NAME}
 )
 
 configure_file(
-    "${CMAKE_SOURCE_DIR}/cmake/${QTERMWIDGET_LIBRARY_NAME}-config.cmake.in"
-    "${CMAKE_BINARY_DIR}/${QTERMWIDGET_LIBRARY_NAME}-config.cmake"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/${QTERMWIDGET_LIBRARY_NAME}-config.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/${QTERMWIDGET_LIBRARY_NAME}-config.cmake"
     @ONLY
 )
 install(FILES
-    "${CMAKE_BINARY_DIR}/${QTERMWIDGET_LIBRARY_NAME}-config.cmake"
-    "${CMAKE_SOURCE_DIR}/cmake/${QTERMWIDGET_LIBRARY_NAME}_use.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${QTERMWIDGET_LIBRARY_NAME}-config.cmake"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/${QTERMWIDGET_LIBRARY_NAME}_use.cmake"
     DESTINATION "${CMAKE_INSTALL_DATADIR}/cmake/${QTERMWIDGET_LIBRARY_NAME}"
 )
 # end of main library
@@ -177,7 +177,7 @@ if (BUILD_DESIGNER_PLUGIN)
     qt4_wrap_cpp(DESIGNER_MOC  lib/designer/qtermwidgetplugin.h)
     qt4_add_resources(DESIGNER_QRC lib/designer/qtermwidgetplugin.qrc)
 
-    link_directories(${CMAKE_BINARY_DIR})
+    link_directories(${CMAKE_CURRENT_BINARY_DIR})
     add_library(qtermwidget4plugin SHARED
         ${DESIGNER_MOC}
         ${DESIGNER_QRC}
@@ -210,7 +210,7 @@ if(BUILD_TEST)
     set(TEST_SRC src/main.cpp)
     add_executable(test ${TEST_SRC})
     add_dependencies(test ${QTERMWIDGET_LIBRARY_NAME})
-    link_directories(${CMAKE_BINARY_DIR})
+    link_directories(${CMAKE_CURRENT_BINARY_DIR})
     target_link_libraries(test ${QTERMWIDGET_QT_LIBRARIES} ${QTERMWIDGET_LIBRARY_NAME} util)
 endif (BUILD_TEST)
 # end of test application
