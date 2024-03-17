@@ -432,7 +432,9 @@ public:
     // maps a point on the widget to the position ( ie. line and column )
     // of the character at that point.
     void getCharacterPosition(const QPoint& widgetPoint,int& line,int& column) const;
-    
+
+    virtual void keyPressEvent(QKeyEvent* event);
+
 public slots:
 
     /** 
@@ -584,7 +586,6 @@ protected:
     virtual void fontChange(const QFont &font);
     virtual void focusInEvent(QFocusEvent* event);
     virtual void focusOutEvent(QFocusEvent* event);
-    virtual void keyPressEvent(QKeyEvent* event);
     virtual void mouseDoubleClickEvent(QMouseEvent* ev);
     virtual void mousePressEvent( QMouseEvent* );
     virtual void mouseReleaseEvent( QMouseEvent* );

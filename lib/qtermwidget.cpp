@@ -529,6 +529,12 @@ QString QTermWidget::keyBindings()
     return m_impl->m_session->keyBindings();
 }
 
+void QTermWidget::injectKeyPressEvent(int key,
+                                      Qt::KeyboardModifiers modifiers) {
+  QKeyEvent event(QEvent::KeyPress, key, modifiers);
+  m_impl->m_terminalDisplay->keyPressEvent(&event);
+}
+
 void QTermWidget::toggleShowSearchBar()
 {
     m_searchBar->isHidden() ? m_searchBar->show() : m_searchBar->hide();

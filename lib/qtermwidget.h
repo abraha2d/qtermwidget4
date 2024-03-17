@@ -126,7 +126,9 @@ public:
 
     //! Return current key bindings
     QString keyBindings();
-    
+
+    void injectKeyPressEvent(int key, Qt::KeyboardModifiers modifiers);
+
     void setMotionAfterPasting(int);
 
     /** Return the number of lines in the history buffer. */
