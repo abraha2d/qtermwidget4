@@ -1232,7 +1232,7 @@ void TerminalDisplay::paintEvent( QPaintEvent* pe )
 {
   QPainter paint(this);
 
-  foreach (const QRect &rect, (pe->region() & contentsRect()).rects())
+  for (const QRect &rect : (pe->region() & contentsRect()).rects())
   {
     drawBackground(paint,rect,palette().background().color(),
                     true /* use opacity setting */);

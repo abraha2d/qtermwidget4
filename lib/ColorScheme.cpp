@@ -693,7 +693,7 @@ QList<QString> ColorSchemeManager::listKDE3ColorSchemes()
     dir.setNameFilters(filters);
     QStringList list = dir.entryList(filters); 
     QStringList ret;
-    foreach(QString i, list)
+    for (const QString &i : list)
         ret << dname + "/" + i;
     return ret;
     //return KGlobal::dirs()->findAllResources("data",
@@ -710,7 +710,7 @@ QList<QString> ColorSchemeManager::listColorSchemes()
     dir.setNameFilters(filters);
     QStringList list = dir.entryList(filters);
     QStringList ret;
-    foreach(QString i, list)
+    for (const QString &i : list)
         ret << dname + "/" + i;
     return ret;
 //    return KGlobal::dirs()->findAllResources("data",
