@@ -276,6 +276,7 @@ void TerminalDisplay::setVTFont(const QFont& f)
     font.setKerning(false);
 
     QWidget::setFont(font);
+    QWidget::setStyleSheet(QString("font-family: %1; font: %2px;").arg(font.family()).arg(font.pointSize()));
     fontChange(font);
   }
 }
